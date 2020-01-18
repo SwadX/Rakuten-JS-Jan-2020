@@ -26,14 +26,22 @@
             txtN2.addEventListener('keyup', triggerCalculation);
 
         }
-        function triggerCalculation(){
-            var n1Value = document.getElementById('txtN1').valueAsNumber,
-                n2Value = document.getElementById('txtN2').valueAsNumber,
-                n1 = isNaN(n1Value) ? 0 : n1Value,
-                n2 = isNaN(n2Value) ? 0 : n2Value,
+
+        function getValues(){
+            var n1Value = document.getElementById('txtN1').valueAsNumber;
+                n1 = isNaN(n1Value) ? 0 : n1Value;
+            var n2Value = document.getElementById('txtN2').valueAsNumber;
+                n2 = isNaN(n2Value) ? 0 : n2Value;
+            var values = { n1 : n1, n2 : n2 };
+            return values;
+        }
+        
+        function processValues(values){
+            var n1 = values.n1, 
+                n2 = values.n2,
                 op = document.getElementById('selectOperator').value,
                 result = 0;
-            if (op === 'add'){
+            if (op === 'add') {
                 result = n1 + n2;
             } else if (op === 'subtract') {
                 result = n1 - n2;
@@ -42,15 +50,23 @@
             } else if (op === 'divide') {
                 result = n1 / n2;
             }
+            return result;
+        }
+        function displayResult(result){
             var divResult = document.getElementById('divResult');
             divResult.innerText = result;
-            if (result >= 0){
+            if (result >= 0) {
                 divResult.classList.add('positive');
                 divResult.classList.remove('negative');
             } else {
                 divResult.classList.remove('positive');
                 divResult.classList.add('negative');
             }
+        }
+        function triggerCalculation(){
+            var values = getValues();
+            var result = processValues(values);
+            displayResult(result);
         }
     </script>
 </head>
