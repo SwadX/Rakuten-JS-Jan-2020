@@ -5,6 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Greeter</title>
+    <script>
+        function greetUser() {
+            var txtUserName = document.getElementById('txtUserName');
+            var userName = txtUserName.value;
+            var greetMessage = 'Hi ' + userName + ', Have a nice day!';
+            document.getElementById('divMessage').innerText = greetMessage;
+        }
+        function onPageLoad(){
+            var btnGreet = document.getElementById('btnGreet')
+            btnGreet.addEventListener('click', greetUser)
+        };
+        window.addEventListener('load', onPageLoad);
+    </script>
 </head>
 <body>
     <h1>Greeter</h1>
@@ -13,5 +26,6 @@
     <input type="text" name="" id="txtUserName">
     <input type="button" value="Greet" id="btnGreet">
     <div id="divMessage">[Greet Message]</div>
+    
 </body>
 </html>
