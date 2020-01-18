@@ -5,6 +5,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Calculator</title>
+    <script>
+        window.addEventListener('load', onPageLoad);
+        function onPageLoad(){
+            var btnCalculate = document.getElementById('btnCalculate');
+            btnCalculate.addEventListener('click', onBtnCalculateClick);
+        }
+        function onBtnCalculateClick(){
+            var n1 = parseInt(document.getElementById('txtN1').value),
+                n2 = parseInt(document.getElementById('txtN2').value),
+                op = document.getElementById('selectOperator').value,
+                result = 0;
+            if (op === 'add'){
+                result = n1 + n2;
+            } else if (op === 'subtract') {
+                result = n1 - n2;
+            } else if (op === 'multiply') {
+                result = n1 * n2;
+            } else if (op === 'divide') {
+                result = n1 / n2;
+            }
+            document.getElementById('divResult').innerText = result;
+        }
+    </script>
 </head>
 <body>
     <h1>Calculator</h1>
