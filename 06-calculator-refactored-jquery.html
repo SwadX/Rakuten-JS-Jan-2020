@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Calculator</title>
+    <script src="jquery-3.4.1.js"></script>
+    <style>
+        .positive{
+            color : green
+        }
+        .negative{
+            color : red;
+        }
+    </style>
+    <script>
+        $(onPageLoad);
+
+        function onPageLoad(){
+            $('#btnCalculate').click(triggerCalculation);
+            $('#selectOperator').change(triggerCalculation);
+            $('#txtN1').keyup(triggerCalculation);
+            $('#txtN2').keyup(triggerCalculation);
+        }
+
+        function getValues(){
+            var n1= parseInt($('#txtN1').val())
+            var n2= parseInt($('#txtN2').val())
+            var values = { n1 : n1, n2 : n2 };
+            return values;
+        }
+        
+        function processValues(values){
+            var n1 = values.n1, 
+                n2 = values.n2,
+                op = $('#selectOperator').val(),
+                result = 0;
+            if (op === 'add') {
+                result = n1 + n2;
+            } else if (op === 'subtract') {
+                result = n1 - n2;
+            } else if (op === 'multiply') {
+                result = n1 * n2;
+            } else if (op === 'divide') {
+                result = n1 / n2;
+            }
+            return result;
+        }
+        function displayResult(result){
+            $('#divResult').text(result);
+            if (result >= 0) {
+                $('#divResult')
+                    .addClass('positive')
+                    .removeClass('negative');
+            } else {
+                $('#divResult')
+                    .removeClass('positive')
+                    .addClass('negative');
+            }
+        }
+        function triggerCalculation(){
+            var values = getValues();
+            var result = processValues(values);
+            displayResult(result);
+        }
+    </script>
+</head>
+<body>
+    <h1>Calculator</h1>
+    <hr>
+    <input type="number" name="" id="txtN1">
+    <select name="" id="selectOperator">
+        <option value="add">Add</option>
+        <option value="subtract">Subtract</option>
+        <option value="multiply">Multiply</option>
+        <option value="divide">Divide</option>
+    </select>
+    <input type="number" name="" id="txtN2">
+    <input type="button" value="Calculate" id="btnCalculate">
+    <div id="divResult">[Default Result]</div>
+</body>
+</html>

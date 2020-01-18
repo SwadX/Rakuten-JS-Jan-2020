@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Products</title>
+    <script src="jquery-3.4.1.js"></script>
+    <script>
+        var products = [];
+        function onAddClick(){
+            var productName = document.getElementById('txtProductName').value;
+            if (products.indexOf(productName) >= 0){
+                displayMessage('Product [ ' + productName + ' ] already exists');
+            } else {
+                products.push(productName);
+                addToList(productName);
+            }
+        }
+
+        function displayMessage(msg){
+            document.getElementById('divMessage').innerText = msg;
+            setTimeout(function(){
+                document.getElementById('divMessage').innerText = '';
+            }, 5000);
+        }
+        function addToList(productName){
+            var productItem = document.createElement('li');
+            productItem.innerText = productName;
+            document.getElementById('olProductList').appendChild(productItem);
+        }
+
+        function onTxtProductNameChange(){
+            document.getElementById('spanCount').innerText = '[ ' + document.getElementById('txtProductName').value.length + ' ]';
+        }
+        function onPageLoad(){
+            var txtProductName = document.getElementById('txtProductName');
+            txtProductName.addEventListener('keyup', onTxtProductNameChange);
+            var btnAdd = document.getElementById('btnAdd');
+            btnAdd.addEventListener('click', onAddClick);
+        }
+        window.addEventListener('load', onPageLoad);
+    </script>
+</head>
+<body>
+    <h1>Products</h1>
+    <hr>
+    <label for="">Product Name :</label>
+    <input type="text" name="" id="txtProductName">
+    <span id="spanCount"> [ 0 ] </span>
+    <input type="button" value="Add Product" id="btnAdd">
+    <ol id="olProductList">
+        
+    </ol>
+    <div id="divMessage"></div>
+</body>
+</html>
