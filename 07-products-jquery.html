@@ -9,37 +9,38 @@
     <script>
         var products = [];
         function onAddClick(){
-            var productName = document.getElementById('txtProductName').value;
+            var productName = $('#txtProductName').val();
             if (products.indexOf(productName) >= 0){
                 displayMessage('Product [ ' + productName + ' ] already exists');
-            } else {
-                products.push(productName);
-                addToList(productName);
+                return;
             }
+            products.push(productName);
+            addToList(productName);
         }
 
         function displayMessage(msg){
-            document.getElementById('divMessage').innerText = msg;
+            $('#divMessage')
+                .html(msg)
+                .show()
+        
             setTimeout(function(){
-                document.getElementById('divMessage').innerText = '';
+                $('#divMessage').fadeOut();
             }, 5000);
         }
         function addToList(productName){
-            var productItem = document.createElement('li');
-            productItem.innerText = productName;
-            document.getElementById('olProductList').appendChild(productItem);
+           $('<li>')
+            .text(productName)
+            .appendTo('#olProductList');
         }
 
         function onTxtProductNameChange(){
-            document.getElementById('spanCount').innerText = '[ ' + document.getElementById('txtProductName').value.length + ' ]';
+            $('#spanCount').text('[ ' + $('#txtProductName').val().length + ' ]');
         }
-        function onPageLoad(){
-            var txtProductName = document.getElementById('txtProductName');
-            txtProductName.addEventListener('keyup', onTxtProductNameChange);
-            var btnAdd = document.getElementById('btnAdd');
-            btnAdd.addEventListener('click', onAddClick);
-        }
-        window.addEventListener('load', onPageLoad);
+        $(function onPageLoad(){
+            $('#txtProductName').keyup(onTxtProductNameChange);
+            $('#btnAdd').click(onAddClick);
+        })
+        
     </script>
 </head>
 <body>
