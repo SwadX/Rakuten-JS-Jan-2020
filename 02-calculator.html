@@ -9,11 +9,20 @@
         window.addEventListener('load', onPageLoad);
         function onPageLoad(){
             var btnCalculate = document.getElementById('btnCalculate');
-            btnCalculate.addEventListener('click', onBtnCalculateClick);
+            btnCalculate.addEventListener('click', triggerCalculation);
+            var selectOperator = document.getElementById('selectOperator');
+            selectOperator.addEventListener('change', triggerCalculation);
+            var txtN1 = document.getElementById('txtN1');
+            txtN1.addEventListener('keyup', triggerCalculation);
+            var txtN2 = document.getElementById('txtN2');
+            txtN2.addEventListener('keyup', triggerCalculation);
+
         }
-        function onBtnCalculateClick(){
-            var n1 = parseInt(document.getElementById('txtN1').value),
-                n2 = parseInt(document.getElementById('txtN2').value),
+        function triggerCalculation(){
+            var n1Value = document.getElementById('txtN1').valueAsNumber,
+                n2Value = document.getElementById('txtN2').valueAsNumber,
+                n1 = isNaN(n1Value) ? 0 : n1Value,
+                n2 = isNaN(n2Value) ? 0 : n2Value,
                 op = document.getElementById('selectOperator').value,
                 result = 0;
             if (op === 'add'){
