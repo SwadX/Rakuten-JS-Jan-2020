@@ -28,7 +28,13 @@
             productItem.innerText = productName;
             document.getElementById('olProductList').appendChild(productItem);
         }
+
+        function onTxtProductNameChange(){
+            document.getElementById('spanCount').innerText = '[ ' + document.getElementById('txtProductName').value.length + ' ]';
+        }
         function onPageLoad(){
+            var txtProductName = document.getElementById('txtProductName');
+            txtProductName.addEventListener('keyup', onTxtProductNameChange);
             var btnAdd = document.getElementById('btnAdd');
             btnAdd.addEventListener('click', onAddClick);
         }
@@ -40,6 +46,7 @@
     <hr>
     <label for="">Product Name :</label>
     <input type="text" name="" id="txtProductName">
+    <span id="spanCount"> [ 0 ] </span>
     <input type="button" value="Add Product" id="btnAdd">
     <ol id="olProductList">
         
