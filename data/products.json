@@ -1,0 +1,29 @@
+{
+  "products": [
+    {
+      "id": 1,
+      "name": "Pen",
+      "cost": 10
+    },
+    {
+      "id": 2,
+      "name": "Pencil",
+      "cost": 5
+    },
+    {
+      "id": 5,
+      "name": "Marker",
+      "cost": 50
+    },
+    {
+      "id": 6,
+      "name": "Scribble Pad",
+      "cost": 10
+    },
+    {
+      "id": 7,
+      "name": "Charger",
+      "cost": 10
+    }
+  ]
+}

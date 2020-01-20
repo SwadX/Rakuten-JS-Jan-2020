@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Products</title>
+    <script src="jquery-3.4.1.js"></script>
+    <script>
+    $(function(){
+        $('#btnLoad').click(function(){
+            $.ajax({
+                method : 'GET',
+                url : 'http://localhost:3000/products'
+            }).then(function(data){
+                data.forEach(product => {
+                    $('<li>')
+                        .text(product.name + ' [ Rs.' + product.cost +' ]')
+                        .appendTo('#olProductList')
+                });
+            });
+        });
+
+        $('#btnAddNew').click(function(){
+            var newProductName = $('#txtProductName').val(),
+                newProductData = {
+                    id : 0,
+                    name : newProductName,
+                    cost : 10
+                };
+                $.ajax({
+                    method : 'POST',
+                    url : 'http://localhost:3000/products',
+                    data : JSON.stringify(newProductData),
+                    dataType : 'JSON',
+                    contentType : 'application/json'
+                }).then(function(data){
+                    $('<li>')
+                        .text(data.name + ' [ Rs.' + data.cost + ' ]')
+                        .appendTo('#olProductList')
+                });
+
+        })
+    });
+    </script>
+</head>
+<body>
+    <h1>Products</h1>
+    <hr>
+    <input type="button" value="LOAD" id="btnLoad">
+    <input type="text" name="" id="txtProductName">
+    <input type="button" value="Add New" id="btnAddNew">
+    <ol id="olProductList"></ol>
+</body>
+</html>
