@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Click Tracker</title>
     <script>
-        function myApp(){
+        (function myApp(){
             window.addEventListener('load', onPageLoad);
             function onPageLoad(){
                 var btnTrack = document.getElementById('btnTrack');
@@ -17,8 +17,8 @@
                 ++counter;
                 document.getElementById('divMessage').innerText = counter;
             }
-        }
-        myApp();
+        })();
+        //myApp();
     </script>
 </head>
 <body>
